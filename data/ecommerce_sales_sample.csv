@@ -1,0 +1,81 @@
+Order ID,Product,Category,Sales,Profit,Quantity,Region,Customer Name,Order Date
+ORD-1001,Noise-Canceling Headphones,Electronics,299.99,82.00,1,West,Aarav Mehta,2024-01-05
+ORD-1002,Organic Cotton T-Shirt,Fashion,59.98,18.50,2,South,Sophia Carter,2024-01-07
+ORD-1003,Standing Desk,Office Supplies,449.00,116.25,1,East,Liam Wilson,2024-01-12
+ORD-1004,Espresso Machine,Home & Kitchen,699.00,154.00,1,North,Emma Johnson,2024-01-18
+ORD-1005,Running Shoes,Fashion,258.00,64.40,2,West,Noah Brown,2024-01-22
+ORD-1006,4K Webcam,Electronics,179.99,51.20,1,East,Olivia Davis,2024-02-02
+ORD-1007,Ergonomic Chair,Office Supplies,529.00,139.80,1,South,Ethan Miller,2024-02-06
+ORD-1008,Air Fryer,Home & Kitchen,239.98,58.10,2,North,Mia Garcia,2024-02-11
+ORD-1009,Yoga Mat,Sports,104.97,32.75,3,West,Lucas Martinez,2024-02-17
+ORD-1010,Smart Watch,Electronics,399.00,97.40,1,South,Amelia Anderson,2024-02-21
+ORD-1011,Leather Backpack,Fashion,189.00,47.20,1,East,James Thomas,2024-03-03
+ORD-1012,Bluetooth Speaker,Electronics,259.98,72.00,2,North,Isabella Moore,2024-03-09
+ORD-1013,Desk Lamp,Office Supplies,119.96,34.60,4,West,Benjamin Jackson,2024-03-13
+ORD-1014,Cookware Set,Home & Kitchen,349.00,83.70,1,South,Charlotte White,2024-03-19
+ORD-1015,Dumbbell Set,Sports,299.00,68.50,1,East,Henry Harris,2024-03-25
+ORD-1016,Mechanical Keyboard,Electronics,159.99,45.15,1,North,Ava Martin,2024-04-02
+ORD-1017,Denim Jacket,Fashion,179.98,42.80,2,West,William Thompson,2024-04-06
+ORD-1018,Monitor Arm,Office Supplies,129.99,39.00,1,East,Harper Lewis,2024-04-12
+ORD-1019,Robot Vacuum,Home & Kitchen,499.00,108.90,1,South,Daniel Lee,2024-04-17
+ORD-1020,Cycling Helmet,Sports,149.97,41.25,3,North,Evelyn Walker,2024-04-23
+ORD-1021,Tablet,Electronics,649.00,143.60,1,West,Michael Hall,2024-05-04
+ORD-1022,Performance Hoodie,Fashion,269.97,69.30,3,South,Abigail Allen,2024-05-08
+ORD-1023,Printer Paper Case,Office Supplies,95.94,21.15,6,East,Alexander Young,2024-05-14
+ORD-1024,Blender,Home & Kitchen,189.99,48.25,1,North,Emily King,2024-05-19
+ORD-1025,Treadmill,Sports,899.00,181.80,1,West,Daniel Lee,2024-05-24
+ORD-1026,Wireless Mouse,Electronics,119.97,35.70,3,East,Aarav Mehta,2024-06-02
+ORD-1027,Sneaker Care Kit,Fashion,79.96,28.15,4,North,Sophia Carter,2024-06-07
+ORD-1028,File Cabinet,Office Supplies,249.00,57.40,1,South,Liam Wilson,2024-06-13
+ORD-1029,Premium Knife Set,Home & Kitchen,329.00,88.25,1,West,Emma Johnson,2024-06-18
+ORD-1030,Fitness Tracker,Sports,259.98,66.80,2,East,Noah Brown,2024-06-25
+ORD-1031,USB-C Hub,Electronics,179.97,54.45,3,South,Olivia Davis,2024-07-03
+ORD-1032,Wool Coat,Fashion,399.00,104.35,1,North,Ethan Miller,2024-07-08
+ORD-1033,Whiteboard,Office Supplies,159.98,38.70,2,West,Mia Garcia,2024-07-12
+ORD-1034,Memory Foam Pillow,Home & Kitchen,149.97,43.80,3,East,Lucas Martinez,2024-07-18
+ORD-1035,Camping Tent,Sports,479.00,112.50,1,South,Amelia Anderson,2024-07-23
+ORD-1036,Smartphone,Electronics,899.00,188.75,1,North,James Thomas,2024-08-01
+ORD-1037,Athletic Socks,Fashion,74.95,24.65,5,West,Isabella Moore,2024-08-06
+ORD-1038,Notebook Pack,Office Supplies,84.90,26.10,10,South,Benjamin Jackson,2024-08-11
+ORD-1039,Dinnerware Set,Home & Kitchen,219.00,52.45,1,East,Charlotte White,2024-08-16
+ORD-1040,Adjustable Kettlebell,Sports,349.00,85.20,1,North,Henry Harris,2024-08-22
+ORD-1041,Gaming Laptop,Electronics,1499.00,291.35,1,West,Ava Martin,2024-09-04
+ORD-1042,Crossbody Bag,Fashion,129.99,36.20,1,East,William Thompson,2024-09-09
+ORD-1043,Desk Organizer,Office Supplies,89.97,30.40,3,North,Harper Lewis,2024-09-15
+ORD-1044,Weighted Blanket,Home & Kitchen,199.98,54.95,2,South,Daniel Lee,2024-09-20
+ORD-1045,Paddle Board,Sports,699.00,155.30,1,West,Evelyn Walker,2024-09-27
+ORD-1046,E-Reader,Electronics,279.99,73.50,1,East,Michael Hall,2024-10-03
+ORD-1047,Silk Scarf,Fashion,119.98,44.60,2,North,Abigail Allen,2024-10-08
+ORD-1048,Paper Shredder,Office Supplies,169.99,46.75,1,South,Alexander Young,2024-10-13
+ORD-1049,Humidifier,Home & Kitchen,159.98,39.10,2,West,Emily King,2024-10-19
+ORD-1050,Golf Rangefinder,Sports,319.00,76.80,1,East,Daniel Lee,2024-10-24
+ORD-1051,Portable SSD,Electronics,379.98,103.25,2,South,Aarav Mehta,2024-11-02
+ORD-1052,Cashmere Sweater,Fashion,289.00,79.70,1,North,Sophia Carter,2024-11-07
+ORD-1053,Conference Speakerphone,Office Supplies,249.99,67.50,1,West,Liam Wilson,2024-11-12
+ORD-1054,Smart Thermostat,Home & Kitchen,249.00,63.40,1,East,Emma Johnson,2024-11-18
+ORD-1055,Rowing Machine,Sports,999.00,202.10,1,South,Noah Brown,2024-11-23
+ORD-1056,Action Camera,Electronics,449.00,115.60,1,North,Olivia Davis,2024-12-01
+ORD-1057,Formal Shoes,Fashion,219.98,61.90,2,West,Ethan Miller,2024-12-06
+ORD-1058,Laptop Stand,Office Supplies,139.96,42.35,4,East,Mia Garcia,2024-12-10
+ORD-1059,Cold Brew Maker,Home & Kitchen,129.99,35.25,1,South,Lucas Martinez,2024-12-16
+ORD-1060,Ski Goggles,Sports,259.98,70.40,2,North,Amelia Anderson,2024-12-22
+ORD-1061,Smart Light Kit,Electronics,229.98,59.75,2,West,James Thomas,2025-01-04
+ORD-1062,Linen Shirt,Fashion,149.97,44.10,3,South,Isabella Moore,2025-01-09
+ORD-1063,Executive Notebook,Office Supplies,99.95,31.80,5,East,Benjamin Jackson,2025-01-14
+ORD-1064,Cast Iron Skillet,Home & Kitchen,89.99,27.40,1,North,Charlotte White,2025-01-20
+ORD-1065,Trail Running Pack,Sports,159.99,42.60,1,West,Henry Harris,2025-01-26
+ORD-1066,Wireless Charger,Electronics,139.96,41.55,4,East,Ava Martin,2025-02-03
+ORD-1067,Travel Jacket,Fashion,229.00,58.95,1,North,William Thompson,2025-02-07
+ORD-1068,Standing Mat,Office Supplies,119.98,35.25,2,South,Harper Lewis,2025-02-13
+ORD-1069,Food Processor,Home & Kitchen,279.99,72.30,1,West,Daniel Lee,2025-02-18
+ORD-1070,Resistance Bands,Sports,89.94,29.10,6,East,Evelyn Walker,2025-02-24
+ORD-1071,Noise-Canceling Headphones,Electronics,599.98,164.00,2,South,Michael Hall,2025-03-03
+ORD-1072,Organic Cotton T-Shirt,Fashion,89.97,27.75,3,North,Abigail Allen,2025-03-08
+ORD-1073,Standing Desk,Office Supplies,898.00,232.50,2,West,Alexander Young,2025-03-14
+ORD-1074,Espresso Machine,Home & Kitchen,699.00,154.00,1,East,Emily King,2025-03-19
+ORD-1075,Running Shoes,Fashion,129.00,32.20,1,South,Daniel Lee,2025-03-25
+ORD-1076,4K Webcam,Electronics,359.98,102.40,2,North,Aarav Mehta,2025-04-02
+ORD-1077,Ergonomic Chair,Office Supplies,529.00,139.80,1,West,Sophia Carter,2025-04-07
+ORD-1078,Air Fryer,Home & Kitchen,119.99,29.05,1,East,Liam Wilson,2025-04-12
+ORD-1079,Yoga Mat,Sports,69.98,21.85,2,South,Emma Johnson,2025-04-18
+ORD-1080,Smart Watch,Electronics,798.00,194.80,2,North,Noah Brown,2025-04-24
