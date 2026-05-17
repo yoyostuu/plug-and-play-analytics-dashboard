@@ -43,7 +43,7 @@
 
 .main .block-container {
     max-width: 1440px;
-    padding: 2rem 2.1rem 2.4rem;
+    padding: 0.5rem 2.1rem 2.4rem;
 }
 
 .block-container hr {
@@ -89,7 +89,8 @@ label,
 
 .hero {
     text-align: center;
-    padding: 5.2rem 1rem 2.4rem;
+    padding: 1rem 1rem 2.4rem;
+    margin-top: -1.5rem;
     animation: fadeUp 0.45s ease both;
 }
 
