@@ -5,10 +5,19 @@ import os
 import streamlit as st
 
 from data_loader import load_demo_dataset, load_mysql_data, load_uploaded_file
+from currency_helper import render_currency_selector, CURRENCIES
 
 
 def render_landing() -> None:
     """Render the startup-style product landing screen."""
+    _, tcol = st.columns([8, 2])
+    with tcol:
+        current_theme = st.session_state.get("app_theme", "Light")
+        app_theme = st.selectbox("🎨 Theme", ["Light", "Dark"], index=0 if current_theme == "Light" else 1)
+        if app_theme != current_theme:
+            st.session_state.app_theme = app_theme
+            st.rerun()
+            
     st.markdown(
         """
         <div class="hero">
@@ -23,16 +32,30 @@ def render_landing() -> None:
     demo_col, upload_col = st.columns(2)
     with demo_col:
         _card("View Demo", "Load a ready-to-analyze ecommerce dataset automatically.", "01")
+        st.caption("Select Demo Currency:")
+        demo_currency = render_currency_selector(
+            default=st.session_state.get("selected_currency", "USD ($) 🇺🇸"),
+            key="demo_currency"
+        )
         if st.button("▶ Explore Demo Dashboard", type="primary", use_container_width=True):
+            st.session_state.selected_currency = demo_currency
+            st.session_state.currency_symbol = CURRENCIES[demo_currency]
             with st.spinner("Preparing demo insights..."):
                 _stage_raw_data(load_demo_dataset(), "Demo ecommerce dataset")
     with upload_col:
         _card("Upload My Business Data", "Bring CSV, Excel, JSON, TSV, or Parquet data.", "02")
+        st.caption("Select Import Currency:")
+        import_currency = render_currency_selector(
+            default=st.session_state.get("selected_currency", "USD ($) 🇺🇸"),
+            key="import_currency"
+        )
         uploaded = st.file_uploader("Upload business data", type=["csv", "xlsx", "xls", "json", "parquet", "tsv"], label_visibility="collapsed")
         if st.button("📂 Upload Business Data", use_container_width=True):
             if uploaded is None:
                 st.warning("Choose a file to continue. For best performance, keep it under 100MB.")
             else:
+                st.session_state.selected_currency = import_currency
+                st.session_state.currency_symbol = CURRENCIES[import_currency]
                 try:
                     with st.spinner("Reading your file and preparing column mapping..."):
                         _stage_raw_data(load_uploaded_file(uploaded.name, uploaded.getvalue()), f"Uploaded: {uploaded.name}")

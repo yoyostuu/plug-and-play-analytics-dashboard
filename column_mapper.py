@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import pandas as pd
 import streamlit as st
+from currency_helper import render_currency_selector, detect_currency_from_columns, CURRENCIES
 
 
 REQUIRED = ["date", "sales", "product"]
@@ -56,6 +57,19 @@ def render_column_mapper(df: pd.DataFrame) -> None:
     )
     st.dataframe(df.head(5), use_container_width=True, hide_index=True)
 
+    # 💱 Currency Confirmation Block
+    detected_currency = detect_currency_from_columns(df)
+    
+    st.markdown("---")
+    st.markdown("### 💱 Confirm Dataset Currency")
+    st.markdown(
+        f"We scanned your dataset and pre-selected **{detected_currency}** based on your headers. Switch instantly if incorrect:"
+    )
+    mapper_currency = render_currency_selector(default=detected_currency, key="mapper_currency")
+    st.session_state.selected_currency = mapper_currency
+    st.session_state.currency_symbol = CURRENCIES[mapper_currency]
+    st.markdown("---")
+
     suggestions = detect_columns(df)
     options = ["-- Not available --"] + list(df.columns)
     mapping = {}
@@ -76,6 +90,10 @@ def render_column_mapper(df: pd.DataFrame) -> None:
 
     if st.button("Launch Dashboard", type="primary", disabled=bool(missing), use_container_width=True):
         try:
+            # Re-ensure currency states are captured on launch
+            st.session_state.selected_currency = mapper_currency
+            st.session_state.currency_symbol = CURRENCIES[mapper_currency]
+            
             st.session_state.mapped_df = normalize_columns(df, mapping)
             st.session_state.needs_mapping = False
             st.session_state.data_ready = True

@@ -4,41 +4,76 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
+from currency_helper import render_currency_selector, CURRENCIES
 
 ACCENT, AMBER, RED, BROWN, MUTED = "#6a8a5a", "#c87820", "#b84030", "#8a7050", "#a09070"
 
 def inject_custom_css() -> None:
     """Inject the premium SaaS visual system used across the app."""
-    st.markdown(
+    import os
+    css_path = os.path.join(os.path.dirname(__file__), "style.css")
+    with open(css_path, "r") as f:
+        css = f.read()
+        
+    if st.session_state.get("app_theme") == "Dark":
+        dark_override = """
+        :root {
+            --bg-page: #121418;
+            --bg-sidebar: #1a1d24;
+            --bg-card: #1f232b;
+            --bg-active: #2a2f3a;
+            --border-default: #2a2f3a;
+            --border-strong: #3a4150;
+            --text-primary: #e0e6ed;
+            --text-secondary: #a0aec0;
+            --text-muted: #718096;
+            --text-heading: #f7fafc;
+            --accent-green: #48bb78;
+            --accent-green-light: #2f855a;
+            --accent-amber: #ed8936;
+            --accent-amber-dark: #dd6b20;
+            --accent-red: #f56565;
+            
+            --bg-page-gradient: linear-gradient(135deg, #121418, #16191f 52%, #1a1d24);
+            --bg-bar-gradient: linear-gradient(90deg, #4a5568, #ed8936);
+            --bg-button-gradient: linear-gradient(180deg, #1f232b, #1a1d24);
+            
+            --shadow-light: rgba(0, 0, 0, 0.2);
+            --shadow-strong: rgba(0, 0, 0, 0.4);
+            --shadow-button: rgba(0, 0, 0, 0.3);
+        }
         """
-        <style>
-        :root{--bg-page:#fdf8f0;--bg-sidebar:#f5f0e8;--bg-card:#fff;--bg-active:#ede8dc;--border-default:#ede8dc;--border-strong:#d8d0c0;--text-primary:#7a6040;--text-secondary:#a09070;--text-muted:#c0b090;--text-heading:#5a4028;--accent-green:#6a8a5a;--accent-green-light:#d4e8c8;--accent-amber:#c87820;--accent-red:#b84030}
-        .stApp{background:linear-gradient(135deg,#fdf8f0,#f7efe4 52%,#fbf6ee);color:var(--text-primary);font-family:Georgia,'Times New Roman',serif}
-        .stApp:before{content:"";position:fixed;inset:10px;border:1px solid var(--border-strong);border-radius:20px;box-shadow:inset 0 0 44px rgba(216,208,192,.36),0 18px 60px rgba(90,64,40,.1);pointer-events:none;z-index:999}
-        .main .block-container{max-width:1440px;padding:2rem 2.1rem 2.4rem}.block-container hr{border-color:var(--border-default)}
-        h1,h2,h3,.dashboard-title,.chart-title{font-family:Georgia,'Times New Roman',serif;color:var(--text-heading)}
-        .dashboard-title{font-size:2.55rem;font-weight:800;letter-spacing:-.025em;margin:.1rem 0 .25rem}.dashboard-subtitle{color:var(--text-secondary);font-size:1.08rem;margin-bottom:1.3rem}
-        .stMarkdown,.stMarkdown p,.stMarkdown span,.stCaptionContainer,.st-emotion-cache-ue6h4q,.st-emotion-cache-16idsys p{color:var(--text-primary)!important}
-        label,[data-testid="stWidgetLabel"],[data-testid="stMarkdownContainer"]{color:var(--text-heading)!important}
-        .hero{text-align:center;padding:5.2rem 1rem 2.4rem;animation:fadeUp .45s ease both}.hero:before{content:"";position:absolute;inset:54px 12%;background:radial-gradient(circle at 50% 10%,rgba(200,120,32,.16),transparent 42%);filter:blur(24px);z-index:-1}.hero h1{font-size:clamp(2.6rem,5vw,5rem);line-height:.95;margin:.85rem auto;max-width:940px}.hero p{color:var(--text-secondary);font-size:1.18rem;max-width:700px;margin:0 auto}
-        .eyebrow,.badge,.chip{display:inline-flex;align-items:center;border-radius:999px;padding:.34rem .66rem;font:500 .76rem Consolas,'Courier New',monospace;border:1px solid var(--border-default);background:var(--bg-active);color:var(--text-primary)}
-        .glass,.metric-card{background:rgba(255,255,255,.78);border:1px solid var(--border-default);box-shadow:0 18px 42px rgba(122,96,64,.09),inset 0 1px 0 rgba(255,255,255,.8);backdrop-filter:blur(16px);border-radius:12px;transition:transform 150ms ease,box-shadow 150ms ease,border-color 150ms ease;animation:fadeUp .35s ease both}
-        .glass:hover,.metric-card:hover{transform:translateY(-3px);border-color:var(--border-strong);box-shadow:0 22px 52px rgba(122,96,64,.13)}
-        .metric-card{padding:1rem 1.05rem;min-height:150px}.metric-label{color:var(--text-secondary);font:.78rem Georgia,serif;text-transform:uppercase;letter-spacing:.08em}.metric-value{font:500 1.85rem Consolas,'Courier New',monospace;color:var(--text-heading);margin-top:.28rem}.metric-help,.section-copy{color:var(--text-secondary);font-size:.9rem}.badge.positive{background:var(--accent-green-light);color:var(--accent-green)}.badge.negative{background:#f4d8d4;color:var(--accent-red)}.badge.warning{background:#f3dfc7;color:var(--accent-amber)}
-        .spark{margin-top:.65rem;width:100%;height:30px}.chart-title{font-size:1.18rem;font-weight:700}.product-row{display:grid;grid-template-columns:34px 1fr 120px 54px;gap:.7rem;align-items:center;padding:.55rem .25rem;border-top:1px solid var(--border-default);transition:background 150ms ease}.product-row:hover{background:#fbf5eb}.bar{height:8px;border-radius:99px;background:var(--bg-active);overflow:hidden}.fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#8a7050,#c87820)}
-        div[data-testid="stButton"] button,div[data-testid="stDownloadButton"] button{border-radius:999px;border:1px solid var(--border-strong);background:linear-gradient(180deg,#fffaf2,#ede8dc);color:var(--text-heading);font-family:Consolas,'Courier New',monospace;box-shadow:0 10px 24px rgba(122,96,64,.1);transition:transform 150ms ease,box-shadow 150ms ease}
-        div[data-testid="stButton"] button:hover,div[data-testid="stDownloadButton"] button:hover{transform:translateY(-1px);box-shadow:0 14px 30px rgba(122,96,64,.15)}
-        section[data-testid="stSidebar"]{width:220px;background:var(--bg-sidebar);border-right:1px solid var(--border-default);box-shadow:8px 0 24px rgba(122,96,64,.05)}section[data-testid="stSidebar"] *{font-family:Georgia,'Times New Roman',serif;color:var(--text-primary)}
-        [data-testid="stFileUploader"],[data-testid="stDataFrame"]{border-radius:12px}.stMultiSelect [data-baseweb="tag"]{background:var(--bg-active);border:1px solid var(--border-default);border-radius:999px;color:var(--text-heading)}
-        @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}@media(max-width:900px){.main .block-container{padding:1.6rem}.product-row{grid-template-columns:28px 1fr}}
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+        css += dark_override
+
+    import time
+    css += f"\n/* force_reload: {time.time()} */"
+    st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
 def render_dashboard(df: pd.DataFrame) -> None:
     """Render the preserved analytics dashboard with polished SaaS styling."""
     st.markdown('<div class="dashboard-title">Plug-and-Play Analytics Dashboard</div>', unsafe_allow_html=True)
     st.markdown('<div class="dashboard-subtitle">Upload your business data and get instant insights in seconds. Optimized for small and medium business datasets.</div>', unsafe_allow_html=True)
+    
+    st.sidebar.markdown("### 💱 Currency Settings")
+    selected_currency = render_currency_selector(
+        default=st.session_state.get("selected_currency", "USD ($) 🇺🇸"),
+        key="dashboard_currency"
+    )
+    st.session_state.selected_currency = selected_currency
+    st.session_state.currency_symbol = CURRENCIES[selected_currency]
+    
+    st.sidebar.markdown("### 🎨 Theme Settings")
+    current_theme = st.session_state.get("app_theme", "Light")
+    app_theme = st.sidebar.radio(
+        "Select Theme",
+        options=["Light", "Dark"],
+        index=0 if current_theme == "Light" else 1,
+        horizontal=True,
+        label_visibility="collapsed"
+    )
+    if app_theme != current_theme:
+        st.session_state.app_theme = app_theme
+        st.rerun()
+    
     st.sidebar.markdown("### Control panel")
     st.sidebar.caption("Refine your view, export filtered data, or change source.")
     if st.sidebar.button("Change data source", use_container_width=True):
@@ -111,7 +146,18 @@ def render_customer_sections(df: pd.DataFrame) -> None:
         _chart(px.scatter(rfm, x="Recency", y="Monetary", size="Frequency", color="Segment", hover_name="Customer Name", title="RFM Segmentation", color_discrete_sequence=[BROWN, ACCENT, AMBER, RED]), "RFM Segmentation", "Recency, frequency, and monetary value")
     st.markdown("### Customer table")
     st.markdown('<div class="section-copy">Review customer value, order frequency, and latest order date.</div>', unsafe_allow_html=True)
-    st.dataframe(segments, use_container_width=True, hide_index=True)
+    
+    symbol = st.session_state.get("currency_symbol", "$")
+    st.dataframe(
+        segments,
+        use_container_width=True,
+        hide_index=True,
+        column_config={
+            "Total_Sales": st.column_config.NumberColumn("Total Sales", format=f"{symbol}%.2f"),
+            "Total_Profit": st.column_config.NumberColumn("Total Profit", format=f"{symbol}%.2f"),
+            "Average_Order_Value": st.column_config.NumberColumn("AOV", format=f"{symbol}%.2f"),
+        }
+    )
 def render_daily_heatmap(df: pd.DataFrame) -> None:
     """Render a weekday by week-of-year sales heatmap."""
     heat = df.copy()
@@ -139,6 +185,20 @@ def build_rfm(df: pd.DataFrame) -> pd.DataFrame:
 def render_downloads(df: pd.DataFrame) -> None:
     """Render the retained CSV report export area."""
     st.markdown("### Export center")
+    col1, col2 = st.columns([2, 1])
+    with col1:
+        st.markdown(f'<div class="section-copy">Download your filtered and prepared orders. Current export format: <b>{st.session_state.get("selected_currency", "USD ($) 🇺🇸")}</b></div>', unsafe_allow_html=True)
+    with col2:
+        st.write("Change export currency:")
+        selected_currency = render_currency_selector(
+            default=st.session_state.get("selected_currency", "USD ($) 🇺🇸"),
+            key="export_currency"
+        )
+        if selected_currency != st.session_state.selected_currency:
+            st.session_state.selected_currency = selected_currency
+            st.session_state.currency_symbol = CURRENCIES[selected_currency]
+            st.rerun()
+            
     st.download_button("Download filtered orders", df.to_csv(index=False).encode("utf-8"), "filtered_ecommerce_orders.csv", "text/csv", use_container_width=True)
 def render_sidebar_spotlight(df: pd.DataFrame) -> None:
     """Add the sidebar best-seller card and revenue goal progress."""
@@ -160,13 +220,36 @@ def metric_card(label: str, value: str, help_text: str, badge_class: str, badge:
     spark = '<svg class="spark" viewBox="0 0 160 36" preserveAspectRatio="none"><polyline points="0,24 28,20 56,25 84,12 112,16 160,7" fill="none" stroke="#8a7050" stroke-width="3"/><polyline points="0,29 28,24 56,28 84,17 112,21 160,12" fill="none" stroke="#6a8a5a" stroke-width="2" opacity=".7"/></svg>'
     st.markdown(f'<div class="metric-card"><div class="metric-label">{label}</div><div class="metric-value">{value}</div><div class="metric-help">{help_text}</div><span class="badge {badge_class}">{badge}</span>{spark}</div>', unsafe_allow_html=True)
 def plot_layout(fig: go.Figure, height: int = 390) -> go.Figure:
-    """Apply premium dark Plotly styling."""
-    fig.update_layout(height=height, template="plotly_white", paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(255,255,255,.42)", font=dict(color="#7a6040", family="Crimson Pro"), margin=dict(l=10, r=10, t=22, b=10), hoverlabel=dict(bgcolor="#fffaf2", bordercolor="#d8d0c0", font_color="#5a4028"), legend=dict(orientation="h"))
-    fig.update_layout(title_font=dict(color="#5a4028"), legend_font=dict(color="#7a6040"), coloraxis_colorbar=dict(tickfont=dict(color="#7a6040"), title_font=dict(color="#5a4028")))
-    fig.update_traces(textfont_color="#5a4028", selector=dict(type="pie"))
-    fig.update_traces(textfont_color="#5a4028", selector=dict(type="treemap"))
-    fig.update_xaxes(gridcolor="#ede8dc", zerolinecolor="#d8d0c0", tickfont=dict(color="#5a4028"), title_font=dict(color="#5a4028"))
-    fig.update_yaxes(gridcolor="#ede8dc", zerolinecolor="#d8d0c0", tickfont=dict(color="#5a4028"), title_font=dict(color="#5a4028"))
+    """Apply premium dynamic Plotly styling based on current theme."""
+    symbol = st.session_state.get("currency_symbol", "$")
+    theme = st.session_state.get("app_theme", "Light")
+    
+    is_dark = theme == "Dark"
+    bg = "rgba(255,255,255,.05)" if is_dark else "rgba(255,255,255,.42)"
+    font_color = "#a0aec0" if is_dark else "#7a6040"
+    title_color = "#f7fafc" if is_dark else "#5a4028"
+    grid_color = "#2a2f3a" if is_dark else "#ede8dc"
+    zero_color = "#3a4150" if is_dark else "#d8d0c0"
+    hover_bg = "#1f232b" if is_dark else "#fffaf2"
+    hover_border = "#3a4150" if is_dark else "#d8d0c0"
+    
+    fig.update_layout(height=height, template="plotly_white", paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor=bg, font=dict(color=font_color, family="Crimson Pro"), margin=dict(l=10, r=10, t=22, b=10), hoverlabel=dict(bgcolor=hover_bg, bordercolor=hover_border, font_color=font_color), legend=dict(orientation="h"))
+    fig.update_layout(title_font=dict(color=title_color), legend_font=dict(color=font_color), coloraxis_colorbar=dict(tickfont=dict(color=font_color), title_font=dict(color=title_color)))
+    fig.update_traces(textfont_color=title_color, selector=dict(type="pie"))
+    fig.update_traces(textfont_color=title_color, selector=dict(type="treemap"))
+    
+    # Auto-format axes with currency symbol if they contain sales, profit, or monetary fields
+    x_title = fig.layout.xaxis.title.text if fig.layout.xaxis and fig.layout.xaxis.title else ""
+    y_title = fig.layout.yaxis.title.text if fig.layout.yaxis and fig.layout.yaxis.title else ""
+    money_keywords = ["sales", "profit", "monetary", "revenue", "value", "aov"]
+    
+    if any(kw in str(y_title).lower() for kw in money_keywords):
+        fig.update_yaxes(tickprefix=symbol)
+    if any(kw in str(x_title).lower() for kw in money_keywords):
+        fig.update_xaxes(tickprefix=symbol)
+        
+    fig.update_xaxes(gridcolor=grid_color, zerolinecolor=zero_color, tickfont=dict(color=title_color), title_font=dict(color=title_color))
+    fig.update_yaxes(gridcolor=grid_color, zerolinecolor=zero_color, tickfont=dict(color=title_color), title_font=dict(color=title_color))
     return fig
 def _chart(fig: go.Figure, title: str, subtitle: str, height: int = 390) -> None:
     """Render a chart with a title block and consistent spacing."""
@@ -186,7 +269,8 @@ def _pct(now: float, before: float) -> str:
     return "+0.0%" if before == 0 else f"{((now - before) / before) * 100:+.1f}%"
 def _money(value: float) -> str:
     """Format a value as compact currency."""
-    return f"${value:,.0f}"
+    symbol = st.session_state.get("currency_symbol", "$")
+    return f"{symbol}{value:,.0f}"
 def _reset_data_state() -> None:
     """Return the app to the landing flow."""
     st.session_state.raw_df = None

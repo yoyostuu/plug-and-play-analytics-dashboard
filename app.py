@@ -22,6 +22,9 @@ def init_session() -> None:
         "data_ready": False,
         "needs_mapping": False,
         "data_source_label": None,
+        "selected_currency": "USD ($) 🇺🇸",
+        "currency_symbol": "$",
+        "app_theme": "Light",
     }
     for key, value in defaults.items():
         st.session_state.setdefault(key, value)
