@@ -385,3 +385,138 @@ div[data-baseweb="menu"] li[aria-selected="true"] {
         grid-template-columns: 28px 1fr;
     }
 }
+
+/* Interactive Tour Styles */
+.tour-container {
+    animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+    margin: 1.5rem auto 2.5rem;
+    max-width: 860px;
+    background: var(--bg-card);
+    border: 2px dashed var(--accent-amber);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 30px 70px var(--shadow-strong);
+}
+
+.tour-steps-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-default);
+    padding-bottom: 1rem;
+}
+
+.tour-dot-group {
+    display: flex;
+    gap: 8px;
+}
+
+.tour-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--border-strong);
+    transition: all 0.3s ease;
+}
+
+.tour-dot.active {
+    background: var(--accent-amber);
+    box-shadow: 0 0 10px var(--accent-amber);
+    transform: scale(1.2);
+}
+
+/* Slide 1 Visual: File Drop Animation */
+.mockup-dropzone {
+    border: 2px dashed var(--border-strong);
+    border-radius: 12px;
+    padding: 2.5rem 1rem;
+    text-align: center;
+    background: var(--bg-page-gradient);
+    position: relative;
+    overflow: hidden;
+}
+
+.mockup-file {
+    font-size: 3rem;
+    display: inline-block;
+    animation: bounceFile 2s infinite ease-in-out;
+}
+
+@keyframes bounceFile {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Slide 2 Visual: Interactive Connecting Mapper */
+.mockup-mapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1.5rem 0;
+    position: relative;
+}
+
+.mapper-col {
+    background: var(--bg-page);
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    font-family: Consolas, monospace;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 10px var(--shadow-light);
+}
+
+.mapper-line {
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-amber), var(--accent-green));
+    flex-grow: 1;
+    margin: 0 15px;
+    position: relative;
+    animation: flowLine 2s infinite linear;
+    background-size: 200% 100%;
+}
+
+@keyframes flowLine {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+}
+
+/* Slide 3 Visual: KPI and Mini Chart */
+.mockup-dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.mockup-kpi {
+    background: var(--bg-page);
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 4px 10px var(--shadow-light);
+}
+
+.mockup-chart-bar {
+    height: 100px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    background: var(--bg-page);
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.chart-bar-single {
+    width: 20px;
+    background: var(--accent-amber);
+    border-radius: 4px 4px 0 0;
+    animation: growBar 1.5s ease-out forwards;
+}
+
+@keyframes growBar {
+    from { height: 0; }
+    to { height: var(--target-height); }
+}
