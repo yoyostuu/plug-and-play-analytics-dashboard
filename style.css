@@ -15,6 +15,20 @@
     --accent-amber-dark: #b0681a;
     --accent-red: #b84030;
     
+    /* Input & Dropdown High-Contrast Tokens (Light Mode defaults) */
+    --bg-input: #ffffff;
+    --text-input: #002b5c;
+    --border-input: #002b5c;
+    --bg-dropdown: #ffffff;
+    --text-dropdown: #002b5c;
+    --bg-dropdown-hover: #e6f0fa;
+    --text-dropdown-hover: #002b5c;
+    --bg-dropdown-selected: #002b5c;
+    --text-dropdown-selected: #ffffff;
+    --bg-tag: #e6f0fa;
+    --text-tag: #002b5c;
+    --border-tag: #cce0f5;
+    
     --bg-page-gradient: linear-gradient(135deg, #fdf8f0, #f7efe4 52%, #fbf6ee);
     --bg-bar-gradient: linear-gradient(90deg, #8a7050, #c87820);
     --bg-button-gradient: linear-gradient(180deg, #fffaf2, #ede8dc);
@@ -520,3 +534,259 @@ div[data-baseweb="menu"] li[aria-selected="true"] {
     from { height: 0; }
     to { height: var(--target-height); }
 }
+
+/* ==========================================================================
+   HIGH CONTRAST THEMED RULES: Ensure highly readable dark blue text on light/white 
+   backgrounds in Light Mode, and sleek slate-white accessible contrast in Dark Mode.
+   ========================================================================== */
+
+/* 1. Selectboxes Contrast Overrides */
+div[data-testid="stSelectbox"] div[data-baseweb="select"],
+div[data-testid="stSelectbox"] div[data-baseweb="select"] > div,
+div[data-testid="stSelectbox"] div[data-baseweb="select"] [role="button"],
+div[data-testid="stSelectbox"] div[data-baseweb="select"] [role="button"] > div,
+.stSelectbox div[data-baseweb="select"],
+.stSelectbox div[data-baseweb="select"] > div {
+    background-color: var(--bg-input) !important;
+    background: var(--bg-input) !important;
+    border-color: var(--border-input) !important;
+}
+
+div[data-testid="stSelectbox"] div[data-baseweb="select"],
+.stSelectbox div[data-baseweb="select"] {
+    border: 1px solid var(--border-input) !important;
+}
+
+div[data-testid="stSelectbox"] div[data-baseweb="select"] *,
+.stSelectbox div[data-baseweb="select"] *,
+div[data-testid="stSelectbox"] div[data-baseweb="select"] input,
+.stSelectbox div[data-baseweb="select"] input {
+    color: var(--text-input) !important;
+    font-family: Georgia, serif !important;
+}
+
+/* 2. Date Input Text Fields Contrast Overrides */
+div[data-testid="stDateInput"] div[data-baseweb="input"],
+div[data-testid="stDateInput"] div[data-baseweb="input"] > div,
+div[data-testid="stDateInput"] div[data-baseweb="input"] input,
+.stDateInput div[data-baseweb="input"],
+.stDateInput div[data-baseweb="input"] > div {
+    background-color: var(--bg-input) !important;
+    background: var(--bg-input) !important;
+}
+
+div[data-testid="stDateInput"] div[data-baseweb="input"],
+.stDateInput div[data-baseweb="input"] {
+    border-color: var(--border-input) !important;
+    border: 1px solid var(--border-input) !important;
+}
+
+div[data-testid="stDateInput"] div[data-baseweb="input"] input,
+.stDateInput div[data-baseweb="input"] input {
+    color: var(--text-input) !important;
+    font-family: Georgia, serif !important;
+}
+
+/* 3. Multiselect Container Contrast Overrides */
+div[data-testid="stMultiSelect"] div[data-baseweb="select"],
+div[data-testid="stMultiSelect"] div[data-baseweb="select"] > div,
+div[data-testid="stMultiSelect"] div[data-baseweb="select"] [role="button"],
+.stMultiSelect div[data-baseweb="select"],
+.stMultiSelect div[data-baseweb="select"] > div {
+    background-color: var(--bg-input) !important;
+    background: var(--bg-input) !important;
+}
+
+div[data-testid="stMultiSelect"] div[data-baseweb="select"],
+.stMultiSelect div[data-baseweb="select"] {
+    border-color: var(--border-input) !important;
+    border: 1px solid var(--border-input) !important;
+}
+
+div[data-testid="stMultiSelect"] div[data-baseweb="select"] input,
+.stMultiSelect div[data-baseweb="select"] input {
+    color: var(--text-input) !important;
+}
+
+.stMultiSelect [data-baseweb="tag"],
+.stMultiSelect [data-baseweb="tag"] *,
+div[data-testid="stMultiSelect"] [data-baseweb="tag"],
+div[data-testid="stMultiSelect"] [data-baseweb="tag"] * {
+    background-color: var(--bg-tag) !important;
+    background: var(--bg-tag) !important;
+    border: 1px solid var(--border-tag) !important;
+    color: var(--text-tag) !important;
+}
+
+/* 4. Dropdown List / Options Popovers Contrast */
+div[data-baseweb="popover"],
+div[data-baseweb="popover"] *,
+div[data-baseweb="popover"] > div,
+div[data-baseweb="menu"],
+div[data-baseweb="popover"] ul[role="listbox"],
+[data-testid="stVirtualDropdown"],
+[data-testid="stVirtualDropdown"] *,
+[data-testid="stVirtualDropdown"] ul,
+[data-testid="stTooltipContent"],
+div[role="dialog"] {
+    background-color: var(--bg-dropdown) !important;
+    background: var(--bg-dropdown) !important;
+    border: 1px solid var(--border-strong) !important;
+    box-shadow: 0 8px 24px var(--shadow-strong) !important;
+}
+
+/* Base dropdown menu items & Virtualized list options styling */
+div[data-baseweb="menu"] li[role="option"],
+div[data-baseweb="popover"] ul[role="listbox"] li[role="option"],
+[data-testid="stVirtualDropdown"] li,
+[data-testid="stVirtualDropdown"] [role="option"],
+div[data-baseweb="menu"] li[role="option"] *,
+div[data-baseweb="popover"] ul[role="listbox"] li[role="option"] *,
+[data-testid="stVirtualDropdown"] li *,
+[data-testid="stVirtualDropdown"] [role="option"] * {
+    background-color: var(--bg-dropdown) !important;
+    background: var(--bg-dropdown) !important;
+    color: var(--text-dropdown) !important;
+    font-family: Georgia, serif !important;
+}
+
+/* Dropdown list item hovering & focus states */
+div[data-baseweb="menu"] li[role="option"]:hover,
+div[data-baseweb="popover"] ul[role="listbox"] li[role="option"]:hover,
+[data-testid="stVirtualDropdown"] li:hover,
+[data-testid="stVirtualDropdown"] [role="option"]:hover,
+div[data-baseweb="menu"] li[role="option"]:focus,
+div[data-baseweb="popover"] ul[role="listbox"] li[role="option"]:focus,
+div[data-baseweb="menu"] li[role="option"]:hover *,
+div[data-baseweb="popover"] ul[role="listbox"] li[role="option"]:hover *,
+[data-testid="stVirtualDropdown"] li:hover *,
+[data-testid="stVirtualDropdown"] [role="option"]:hover * {
+    background-color: var(--bg-dropdown-hover) !important;
+    background: var(--bg-dropdown-hover) !important;
+    color: var(--text-dropdown-hover) !important;
+}
+
+/* Selected dropdown option styling */
+div[data-baseweb="menu"] li[aria-selected="true"],
+div[data-baseweb="popover"] ul[role="listbox"] li[aria-selected="true"],
+[data-testid="stVirtualDropdown"] li[aria-selected="true"],
+div[data-baseweb="menu"] li[aria-selected="true"] *,
+div[data-baseweb="popover"] ul[role="listbox"] li[aria-selected="true"] *,
+[data-testid="stVirtualDropdown"] li[aria-selected="true"] * {
+    background-color: var(--bg-dropdown-selected) !important;
+    background: var(--bg-dropdown-selected) !important;
+    color: var(--text-dropdown-selected) !important;
+}
+
+/* 5. Calendar Picker Popup Contrast */
+div[data-baseweb="calendar"] {
+    background-color: var(--bg-dropdown) !important;
+    background: var(--bg-dropdown) !important;
+    color: var(--text-dropdown) !important;
+}
+
+div[data-baseweb="calendar"] *,
+div[data-baseweb="calendar"] header,
+div[data-baseweb="calendar"] header *,
+div[data-baseweb="calendar"] button,
+div[data-baseweb="calendar"] [role="gridcell"] {
+    color: var(--text-dropdown) !important;
+    font-family: Georgia, serif !important;
+}
+
+/* Weekday header letters (Su, Mo, Tu, etc.) and grid column headers */
+div[data-baseweb="calendar"] [role="columnheader"],
+div[data-baseweb="calendar"] [role="columnheader"] *,
+div[data-baseweb="calendar"] [role="grid"] > div:first-child *,
+div[data-baseweb="calendar"] [role="row"] > div {
+    color: var(--text-dropdown) !important;
+    font-weight: 700 !important;
+}
+
+/* Calendar day number cells hover/active/disabled states */
+div[data-baseweb="calendar"] [role="gridcell"]:hover {
+    background-color: var(--bg-dropdown-hover) !important;
+    background: var(--bg-dropdown-hover) !important;
+    color: var(--text-dropdown-hover) !important;
+}
+
+/* Disabled/out of month days (light gray color for secondary info) */
+div[data-baseweb="calendar"] [role="gridcell"][aria-disabled="true"],
+div[data-baseweb="calendar"] [role="gridcell"][aria-disabled="true"] * {
+    color: var(--text-muted) !important;
+}
+
+/* Selected/Highlighted date cell */
+div[data-baseweb="calendar"] [role="gridcell"][aria-selected="true"],
+div[data-baseweb="calendar"] [role="gridcell"][aria-selected="true"] * {
+    background-color: var(--bg-dropdown-selected) !important;
+    background: var(--bg-dropdown-selected) !important;
+    color: var(--text-dropdown-selected) !important;
+    border-radius: 50% !important;
+}
+
+/* 6. General Input Fields (Text/Number) Contrast */
+div[data-testid="stTextInput"] input,
+div[data-testid="stNumberInput"] input,
+textarea {
+    background-color: var(--bg-input) !important;
+    background: var(--bg-input) !important;
+    border-color: var(--border-input) !important;
+    border: 1px solid var(--border-input) !important;
+    color: var(--text-input) !important;
+    font-family: Georgia, serif !important;
+}
+
+div[data-testid="stTextInput"] input::placeholder,
+div[data-testid="stNumberInput"] input::placeholder,
+textarea::placeholder {
+    color: var(--text-muted) !important;
+    opacity: 0.8 !important;
+}
+
+/* 7. File Uploader and Drag-and-Drop Dropzone Contrast */
+[data-testid="stFileUploaderDropzone"] {
+    background-color: var(--bg-card) !important;
+    border: 2px dashed var(--border-strong) !important;
+    border-radius: 12px !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+[data-testid="stFileUploaderDropzone"]:hover {
+    border-color: var(--accent-amber) !important;
+    box-shadow: 0 0 12px rgba(237, 137, 54, 0.15) !important;
+}
+
+[data-testid="stFileUploaderDropzone"] * {
+    color: var(--text-primary) !important;
+}
+
+[data-testid="stFileUploaderDropzone"] small,
+[data-testid="stFileUploaderDropzone"] span {
+    color: var(--text-secondary) !important;
+}
+
+/* 8. Expander & Accordion High-Contrast Styling */
+[data-testid="stExpander"],
+[data-testid="stExpander"] > details,
+[data-testid="stExpander"] summary,
+[data-testid="stExpander"] [role="button"],
+[data-testid="stExpander"] [role="button"] * {
+    background-color: var(--bg-card) !important;
+    background: var(--bg-card) !important;
+    color: var(--text-heading) !important;
+    border: none !important;
+}
+
+[data-testid="stExpander"] {
+    border: 1px solid var(--border-strong) !important;
+    border-radius: 12px !important;
+    margin-bottom: 0.8rem !important;
+    box-shadow: 0 4px 12px var(--shadow-light) !important;
+}
+
+[data-testid="stExpander"] summary:hover {
+    color: var(--accent-amber) !important;
+}
+
+

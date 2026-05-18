@@ -22,25 +22,36 @@ def inject_custom_css() -> None:
             --bg-sidebar: #1a1d24;
             --bg-card: #1f232b;
             --bg-active: #2a2f3a;
-            --border-default: #2a2f3a;
-            --border-strong: #3a4150;
-            --text-primary: #e0e6ed;
-            --text-secondary: #a0aec0;
-            --text-muted: #718096;
-            --text-heading: #f7fafc;
+            --border-default: #334155;
+            --border-strong: #475569;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --text-heading: #f8fafc;
             --accent-green: #48bb78;
             --accent-green-light: #2f855a;
             --accent-amber: #ed8936;
             --accent-amber-dark: #dd6b20;
             --accent-red: #f56565;
             
+            /* Input & Dropdown High-Contrast Tokens (Dark Mode Overrides) */
+            --bg-input: #1e293b;
+            --text-input: #f8fafc;
+            --border-input: #475569;
+            --bg-dropdown: #1e293b;
+            --text-dropdown: #f8fafc;
+            --bg-dropdown-hover: #334155;
+            --text-dropdown-hover: #ffffff;
+            --bg-dropdown-selected: #ed8936;
+            --text-dropdown-selected: #ffffff;
+            
             --bg-page-gradient: linear-gradient(135deg, #121418, #16191f 52%, #1a1d24);
             --bg-bar-gradient: linear-gradient(90deg, #4a5568, #ed8936);
             --bg-button-gradient: linear-gradient(180deg, #1f232b, #1a1d24);
             
-            --shadow-light: rgba(0, 0, 0, 0.2);
-            --shadow-strong: rgba(0, 0, 0, 0.4);
-            --shadow-button: rgba(0, 0, 0, 0.3);
+            --shadow-light: rgba(0, 0, 0, 0.25);
+            --shadow-strong: rgba(0, 0, 0, 0.45);
+            --shadow-button: rgba(0, 0, 0, 0.35);
         }
         """
         css += dark_override
